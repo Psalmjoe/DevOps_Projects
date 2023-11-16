@@ -78,6 +78,7 @@ Here are some options you can use with the ls command
 Cat(concatenate) command is very frequently used in Linux. It reads data from the file and gives its content as output. It helps us to create, view, and concatenate files. To run the cat command, type cat followed by the file name and extention. For instance;
 
 ```cat Learning-linux```
+
 ![Alt text](<Images/Screenshot 2023-11-15 163548.png>)
 
 
@@ -99,9 +100,10 @@ cp stands for a copy. This command is used to copy files or groups of files or d
 ```cp sample.md test-folder```
 ![Alt text](<Images/Screenshot 2023-11-15 170127.png>)
 
-To copy the content of a file to a new file in the same directory, enter cp followed by the source and dsetination file as below :
+To copy the content of a file to a new file in the same directory, enter cp followed by the source and destination file as below :
 
 ```cp file.txt file2.txt```
+
 ![Alt text](<Images/Screenshot 2023-11-15 170628.png>)
 
 To copy an entire directory, use the R flag as shown below
@@ -132,6 +134,7 @@ Here's the basic syntax
 For example, to create a directly called music
 
 ```mkdir Music```
+
 ![Alt text](<Images/Screenshot 2023-11-15 175321.png>)
 
 To make a new directory called song inside music, use the command :
@@ -161,7 +164,383 @@ Multiple files can be removed by running the below command :
 ![Alt text](<Images/Screenshot 2023-11-15 180957.png>)
 
 
+## 11. touch Command
+The touch command's primary function is to modify a timestamp. Commonly, the utility is used for file creation, although this is not its primary function.
 
+For example, to create a new_file, run the command :
+
+```touch newfile1```
+![Alt text](<Images/Screenshot 2023-11-15 185053.png>)
+
+### 12. locate Command
+
+The locate command is used to find a file in the database system. Morover, adding the i argument will turn off the case sensitivity, so that you can search for a file even if you don't remember it's exact name. To look for content that contains two or more words, use an asterisk (*).
+
+For example,
+
+```locate -i Chynergy.pem```
+![Alt text](<Images/Screenshot 2023-11-15 191704.png>)
+
+### 13. find command
+
+The find command is one of the most useful Linux commands, especially when you're faced with the hundreds and thousands of files and folders on a modern computer. As its name implies, find helps you find things, and not just by filename.
+
+General syntax :
+
+```find [option] [path] [expression]```
+
+For example;
+
+```find /videos```
+![Alt text](<Images/Screenshot 2023-11-15 192454.png>)
+
+
+### 14. grep Command
+
+In Linux Systems Grep, short for “global regular expression print”, is a command used in searching and matching text files contained in the regular expressions.
+
+For example;
+
+```grep cyan colours.txt```
+![Alt text](<Images/Screenshot 2023-11-16 044941.png>)
+
+### 15. df Command
+
+The df command displays information about total space and available space on a file system. The FileSystem parameter specifies the name of the device on which the file system resides, the directory on which the file system is mounted, or the relative path name of a file system.
+
+Syntax
+
+```df [options] [file]```
+
+For example,
+
+```df -h```
+![Alt text](<Images/Screenshot 2023-11-16 045506.png>)
+
+### 16. du command
+
+The du (disk usage) command measures the disk space occupied by files or directories. By default, it measures the current directory and all its subdirectories, printing totals in blocks for each, with a grand total at the bottom.
+
+For example,
+
+```du test_folder```
+![Alt text](<Images/Screenshot 2023-11-16 045846.png>)
+
+### 17. head Command
+
+The head command, as the name implies, print the top ten number of data of the given input. By default, it prints the first 10 lines of the specified files. If more than one file name is provided then data from each file is preceded by its file name.
+
+Genaral syntax :
+
+```head [option] [file]```
+
+For example :
+
+```head deploy.yml```
+
+![Alt text](<Images/Screenshot 2023-11-16 052703.png>)
+
+### 18. tail Command
+
+Tail is a command which prints the last few number of lines (10 lines by default) of a certain file, then terminates.
+
+Genaral syntax :
+
+```tail [option] [file]```
+
+For example :
+
+```tail deploy.yml```
+
+![Alt text](<Images/Screenshot 2023-11-16 053303.png>)
+
+
+### 19. diff Command
+
+diff stands for difference. This command is used to display the differences in the files by comparing the files line by line.
+
+Syntax :
+
+```diff [option] file1 file2```
+
+Example :
+
+```diff deploy.yml wget.yml```
+![Alt text](<Images/Screenshot 2023-11-16 055519.png>)
+
+
+### 20. tar Command
+
+The tar command is short for tape archive in Linux. This command is used for creating Archive and extracting the archive files. In Linux, it is one of the essential commands which facilitate archiving functionality.
+
+General syntax :
+
+```tar [options] [archive_file] [file or directory to be archived]```
+
+Example:
+![Alt text](<Images/Screenshot 2023-11-16 061928.png>)
+
+
+## File Permissions and Ownership
+
+### 21. chmod Command
+
+The chmod command is used to change the access mode of a file. The name is an abbreviation of change mode which states that every file and directory has a set of permissions that control the permissions like who can read, write or execute the file.
+
+General syntax :
+
+```chmod [option] [permission] [file_name]```
+
+For example, the owner is currently the only one with permissionto change note.txt. To allow others to read, write , and execute the file, change it to the rwxrwxrwx permission type whose numeric value is 777 :
+
+```chmod 777 file1.txt file2.txt```
+
+![Alt text](<Images/Screenshot 2023-11-16 153323.png>)
+
+
+### 22. chown Command
+
+chown command is used to change the file Owner or group.
+
+Basic syntax is :
+
+```chown [option] owner[:group] file(s)```
+
+For example, to make peter the owner of file1.txt :
+
+```sudo chown terrafirma file1.txt```
+
+![Alt text](<Images/Screenshot 2023-11-16 161141.png>)
+
+
+### 23. jobs Command
+
+Jobs command is used to list the jobs that you are running in the background and in the foreground. If the prompt is returned with no information no jobs are present. All shells are not capable of running this command. This command is only available in the csh, bash, tcsh, and ksh shells.
+
+Basic syntax :
+
+```jobs [options] jobID```
+
+To check the status of jobs in the current shell, simply enter jobs to the CLI
+
+
+### 24. kill Command
+
+the kill command is used to send a signal to a process, which can be used to kill the process. The signal can be specified as a signal number or as a signal name.
+
+To kill a program you must know its process identification number (PID). If you don't know the PID, run the below command :
+
+```ps ux```
+
+![Alt text](<Images/Screenshot 2023-11-16 162820.png>)
+
+After knowing the PID and the signal to use, run the syntax below :
+
+```kill [signal_option] pid```
+
+There are 64 signals that can be used but the 2 most commonly used are :
+
+Run **Kill SIGTERM PID** to terminate a program and save.
+
+Run **KILL SIGKILL PID** to terminate a program without saving.
+
+
+### 25. ping Command
+
+The ping command in Linux is a utility that helps to test connectivity between two devices on a network. ping command sends a request to a specified device and waits for a response. response from device helps us to determine whether device is available or not.
+
+General syntax :
+
+```ping [option] [hostname_or_IP_address]```
+
+For example, you can try to connect to Google.com and measure it's response time.
+
+ping google.com
+![Alt text](<Images/Screenshot 2023-11-16 163345.png>)
+
+
+### 26. wget Command
+
+wget is a free utility for non-interactive download of files from the web. It supports HTTP (hypertext transfer protocol), HTTPS, and FTP protocols, and retrieval through HTTP proxies. It is also non-interactive, meaning that it can work in the background, while the user is not logged on, which allows you to start a retrieval and disconnect from the system, letting wget finish the work. By contrast, most web browsers require constant user interaction, which make transferring a lot of data difficult.
+
+General syntax :
+
+```wget [option] [url]```
+
+For example, to download the latest copy of wordpress :
+
+```wget https://wordpress.org/latest.zip```
+
+![Alt text](<Images/Screenshot 2023-11-16 163940.png>)
+
+
+### 27. uname Command
+
+The uname (UNIX name) command in Linux is a simple yet powerful tool that offers information about a Linux machine's operating system and hardware platform. Sysadmins and developers use uname for troubleshooting and monitoring purposes.
+
+General syntax :
+
+```uname [option]```
+![Alt text](<Images/Screenshot 2023-11-16 164233.png>)
+
+There are acceptable options to use :
+
+```uname -a``` to determe all system information
+
+```uname -s``` to determine kernel name
+
+```uname -n``` to determine system node host
+
+
+### 28. top Command
+
+The top command is used to show the active Linux processes. It provides a dynamic real-time view of the running system. Usually, this command shows the summary information of the system and the list of processes or threads which are currently managed by the Linux kernel.
+
+General syntax :
+
+```top```
+![Alt text](<Images/Screenshot 2023-11-16 164652.png>)
+
+
+### 29. history Command
+
+history command is used to view the previously executed command.
+
+General syntax :
+
+```history [option]```
+![Alt text](<Images/Screenshot 2023-11-16 164959.png>)
+
+There are acceptable options to use :
+
+```history -c``` clears the complete history list
+
+```history -d``` offset deletes the history entry at the OFFSET position
+
+```history -a``` appends history lines
+
+
+### 30. man Command
+
+man command in Linux is used to display the user manual of any command that we can run on the terminal. It provides a detailed view of the command which includes NAME, SYNOPSIS, DESCRIPTION, OPTIONS, EXIT STATUS, RETURN VALUES, ERRORS, FILES, VERSIONS, EXAMPLES, AUTHORS and SEE ALSO.
+
+To display the complete manual :
+
+```man [command_name]```
+![Alt text](<Images/Screenshot 2023-11-16 170010.png>)
+
+
+### 31. echo Command
+
+The echo command in Linux is a built-in command that allows users to display lines of text or strings that are passed as arguments. It is commonly used in shell scripts and batch files to output status text to the screen or a file.
+
+```echo [option] [string]```
+
+For example
+
+```echo john```
+![Alt text](<Images/Screenshot 2023-11-16 170326.png>)
+
+
+### 32. zip, unzip Commands
+
+ZIP is a compression and file packaging utility. Each file is stored in a single .zip {.zip-filename} file with the extension .zip. Zip is used to compress files to reduce file size and is also used as a file package utility.
+
+General syntax
+
+```zip [options] zipfile file1 file2…```
+
+For example, to zip a file named file1.txt
+
+```zip archive.zip file1.txt```
+![Alt text](<Images/Screenshot 2023-11-16 171039.png>)
+
+On the other hand, the unzip file extracts the zip from the archive. The general syntax is as below :
+
+```unzip [option] file_name.zip```
+
+For example,
+
+```unzip archive.zip```
+![Alt text](<Images/Screenshot 2023-11-16 171415.png>)
+
+
+### 33. hostname command
+
+hostname command in Linux is used to obtain the DNS (Domain Name System) name and set the system’s hostname or NIS (Network Information System) domain name. A hostname is a name given to a computer and attached to the network. Its main purpose is to uniquely identify over a network.
+
+General syntax :
+
+```hostname [option]```
+
+For example;
+![Alt text](<Images/Screenshot 2023-11-16 171846.png>)
+
+
+### 34. useradd, userdel Commands
+
+useradd is a command in Linux that is used to add user accounts to your system. It makes changes to the following files:
+
+```/etc/passwd
+/etc/shadow
+/etc/group
+/etc/gshadow
+creates a directory for new user in /home
+```
+
+General syntax :
+
+```useradd [option] username```
+
+To set the password :
+
+```passwd the_password_combination```
+
+For example, to add a new user,
+
+```useradd John```
+
+```passwd 123456789```
+
+To delete a user account, use the userdel command :
+
+```userdel username```
+![Alt text](<Images/Screenshot 2023-11-16 182246.png>)
+
+
+### 35. apt-get Command
+
+apt-get is a command-line tool that helps in handling packages in Linux. Its main task is to retrieve the information and packages from the authenticated sources for installation, upgrade, and removal of packages along with their dependencies. Here APT stands for Advanced Packaging Tool.
+
+Basic syntax :
+
+```apt-get [options] (command)```
+
+For example, to update to update the package lists for available software packages from the configured repositories
+
+```sudo apt-get update```
+![Alt text](<Images/Screenshot 2023-11-16 182943.png>)
+
+
+### 36. nano, vi, jed Commands
+
+Linux allows users to to edit and manage files via a test editor such as nano, vi, or jed. nano and vi come with the operating sysytem while jed has to be installed.
+
+General syntax,
+
+```nano [filename]```
+![Alt text](<Images/Screenshot 2023-11-16 183658.png>)
+
+```vi [filename]```
+![Alt text](<Images/Screenshot 2023-11-16 184112.png>)
+
+
+jed has a drep=down menu interface that allows users to perform actions without entering keyboard combinations or commands. Like vi, it has modes to load modules or plugins to write specific texts.
+
+General syntax,
+
+```jed [filename]```
+![Alt text](<Images/Screenshot 2023-11-16 185032.png>)
 
 
 
