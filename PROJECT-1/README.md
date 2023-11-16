@@ -1,4 +1,4 @@
-# Linux Practice Project
+# **Linux Practice Project**
 ## Introduction to Basic Linux Commands
 Linux commands  are executed on Terminal by pressing Enter at the end of line. You can run commands to perform various tasks, from package installation to user management and file manipulation.
 
@@ -7,7 +7,7 @@ Here's what a Linux command's general syntax looks like
 ```CommandName [option(s)] [parameter(s)]``` 
 
 ## File Manipulation
-### 1. Sudo command 
+### 1. sudo Command 
 This is short for *superuser do*, sudo is one of the most popular basic Linux commands that lets you perform tasks that requires administrative or root permissions.
 
 The general syntax is:
@@ -17,6 +17,7 @@ The general syntax is:
 For example:
 
 ```sudo apt upgrade```
+
 ![Alt text](<Images/Screenshot 2023-11-15 151413.png>)
 
 ### 2. pwd Command
@@ -56,6 +57,7 @@ Here are some shortcuts to help navigate the cd command :
 ### 4. ls Command
 
 ls is a Linux shell command that lists directory contents of files and directories. It provides valuable information about files, directories, and their attributes. Running it without a flag or parameter will show the current working directory's content.
+
 ![Alt text](<Images/Screenshot 2023-11-15 154945.png>)
 
 
@@ -85,6 +87,7 @@ Cat(concatenate) command is very frequently used in Linux. It reads data from th
 Here are other ways to use the cat command :
 
 ```cat filename1.txt filename2.txt > filename3.txt```
+
 ![Alt text](<Images/Screenshot 2023-11-15 163918.png>)
 
 *Merges file1.txt and file2.txt and stores the output in file3.txt*
@@ -92,12 +95,14 @@ Here are other ways to use the cat command :
 ```tac file1.txt```
 
 This command displays the content of a a file in reverse order.
+
 ![Alt text](<Images/Screenshot 2023-11-15 165221.png>)
 
 ### 6. cp Command
 cp stands for a copy. This command is used to copy files or groups of files or directories. To copy files from the current directory to another directory, enter cp followed by the file name and the destination directory. For example;
 
 ```cp sample.md test-folder```
+
 ![Alt text](<Images/Screenshot 2023-11-15 170127.png>)
 
 To copy the content of a file to a new file in the same directory, enter cp followed by the source and destination file as below :
@@ -109,6 +114,7 @@ To copy the content of a file to a new file in the same directory, enter cp foll
 To copy an entire directory, use the R flag as shown below
 
 ``` cp -R sample Devops_linux/```
+
 ![Alt text](<Images/Screenshot 2023-11-15 171809.png>)
 
 ### 7. mv Command
@@ -149,6 +155,7 @@ The rmdir command removes the directory, specified by the Directory parameter, f
 To remove and empty dirextory from its parent directory, use the below cammand :
 
 ```rmdir music/songs```
+
 ![Alt text](<Images/Screenshot 2023-11-15 180634.png>)
 
 ### 10. rm Command
@@ -161,6 +168,7 @@ Syntax :
 Multiple files can be removed by running the below command :
 
 ```rm file1.txt file2.txt file3.txt```
+
 ![Alt text](<Images/Screenshot 2023-11-15 180957.png>)
 
 
@@ -170,6 +178,7 @@ The touch command's primary function is to modify a timestamp. Commonly, the uti
 For example, to create a new_file, run the command :
 
 ```touch newfile1```
+
 ![Alt text](<Images/Screenshot 2023-11-15 185053.png>)
 
 ### 12. locate Command
@@ -179,6 +188,7 @@ The locate command is used to find a file in the database system. Morover, addin
 For example,
 
 ```locate -i Chynergy.pem```
+
 ![Alt text](<Images/Screenshot 2023-11-15 191704.png>)
 
 ### 13. find command
@@ -192,6 +202,7 @@ General syntax :
 For example;
 
 ```find /videos```
+
 ![Alt text](<Images/Screenshot 2023-11-15 192454.png>)
 
 
@@ -202,6 +213,7 @@ In Linux Systems Grep, short for “global regular expression print”, is a com
 For example;
 
 ```grep cyan colours.txt```
+
 ![Alt text](<Images/Screenshot 2023-11-16 044941.png>)
 
 ### 15. df Command
@@ -215,6 +227,7 @@ Syntax
 For example,
 
 ```df -h```
+
 ![Alt text](<Images/Screenshot 2023-11-16 045506.png>)
 
 ### 16. du command
@@ -224,6 +237,7 @@ The du (disk usage) command measures the disk space occupied by files or directo
 For example,
 
 ```du test_folder```
+
 ![Alt text](<Images/Screenshot 2023-11-16 045846.png>)
 
 ### 17. head Command
@@ -266,6 +280,7 @@ Syntax :
 Example :
 
 ```diff deploy.yml wget.yml```
+
 ![Alt text](<Images/Screenshot 2023-11-16 055519.png>)
 
 
@@ -278,6 +293,7 @@ General syntax :
 ```tar [options] [archive_file] [file or directory to be archived]```
 
 Example:
+
 ![Alt text](<Images/Screenshot 2023-11-16 061928.png>)
 
 
@@ -356,6 +372,7 @@ General syntax :
 For example, you can try to connect to Google.com and measure it's response time.
 
 ping google.com
+
 ![Alt text](<Images/Screenshot 2023-11-16 163345.png>)
 
 
@@ -381,6 +398,7 @@ The uname (UNIX name) command in Linux is a simple yet powerful tool that offers
 General syntax :
 
 ```uname [option]```
+
 ![Alt text](<Images/Screenshot 2023-11-16 164233.png>)
 
 There are acceptable options to use :
@@ -399,6 +417,7 @@ The top command is used to show the active Linux processes. It provides a dynami
 General syntax :
 
 ```top```
+
 ![Alt text](<Images/Screenshot 2023-11-16 164652.png>)
 
 
@@ -409,6 +428,7 @@ history command is used to view the previously executed command.
 General syntax :
 
 ```history [option]```
+
 ![Alt text](<Images/Screenshot 2023-11-16 164959.png>)
 
 There are acceptable options to use :
@@ -427,6 +447,7 @@ man command in Linux is used to display the user manual of any command that we c
 To display the complete manual :
 
 ```man [command_name]```
+
 ![Alt text](<Images/Screenshot 2023-11-16 170010.png>)
 
 
@@ -439,6 +460,7 @@ The echo command in Linux is a built-in command that allows users to display lin
 For example
 
 ```echo john```
+
 ![Alt text](<Images/Screenshot 2023-11-16 170326.png>)
 
 
@@ -453,6 +475,7 @@ General syntax
 For example, to zip a file named file1.txt
 
 ```zip archive.zip file1.txt```
+
 ![Alt text](<Images/Screenshot 2023-11-16 171039.png>)
 
 On the other hand, the unzip file extracts the zip from the archive. The general syntax is as below :
@@ -462,10 +485,11 @@ On the other hand, the unzip file extracts the zip from the archive. The general
 For example,
 
 ```unzip archive.zip```
+
 ![Alt text](<Images/Screenshot 2023-11-16 171415.png>)
 
 
-### 33. hostname command
+### 33. hostname Command
 
 hostname command in Linux is used to obtain the DNS (Domain Name System) name and set the system’s hostname or NIS (Network Information System) domain name. A hostname is a name given to a computer and attached to the network. Its main purpose is to uniquely identify over a network.
 
@@ -474,6 +498,7 @@ General syntax :
 ```hostname [option]```
 
 For example;
+
 ![Alt text](<Images/Screenshot 2023-11-16 171846.png>)
 
 
@@ -505,6 +530,7 @@ For example, to add a new user,
 To delete a user account, use the userdel command :
 
 ```userdel username```
+
 ![Alt text](<Images/Screenshot 2023-11-16 182246.png>)
 
 
@@ -519,6 +545,7 @@ Basic syntax :
 For example, to update to update the package lists for available software packages from the configured repositories
 
 ```sudo apt-get update```
+
 ![Alt text](<Images/Screenshot 2023-11-16 182943.png>)
 
 
@@ -529,9 +556,11 @@ Linux allows users to to edit and manage files via a test editor such as nano, v
 General syntax,
 
 ```nano [filename]```
+
 ![Alt text](<Images/Screenshot 2023-11-16 183658.png>)
 
 ```vi [filename]```
+
 ![Alt text](<Images/Screenshot 2023-11-16 184112.png>)
 
 
@@ -540,12 +569,69 @@ jed has a drep=down menu interface that allows users to perform actions without 
 General syntax,
 
 ```jed [filename]```
+
 ![Alt text](<Images/Screenshot 2023-11-16 185032.png>)
 
 
 
+### 37. alias, unalias Commands
+
+The alias command is used to customize the shell environment by generating command-line aliases. Aliases are shorthand for longer expressions. Using aliases, you can create a short string that represents a longer command with various options and arguments. For example, you can create an alias called myls that executes the ls – al command.
+
+There are two types of aliases to create in Linux:
+
+```
+Temporary. Add them using the alias command.
+Permanent. These require to edit system files.
+```
+Use the alias command to create a temporary alias that lasts until the end of the current terminal session. For instance, creating m as an alias for the mkdir command:
+
+```alias m=mkdir```
+
+![Alt text](<Images/Screenshot 2023-11-16 192656.png>)
+
+Another use for aliases is to create a shortcut for running scripts. To do this, provide the absolute path to the script as the value. For example,
+
+```alias frename='Example/Test/file_rename.sh'```
+
+To remove an alias, use the unalias command with the following syntax:
+
+```unalias [name]```
+
+![Alt text](<Images/Screenshot 2023-11-16 193117.png>)
 
 
+### 38. su Command
+
+su command in linux allows a user to switch to another user account and gain all of its privileges, while sudo command in linux allows a user to execute a specific command with the privileges of another user.
+
+General syntax
+
+```sudo su [options] [username [argument]]```
+![Alt text](<Images/Screenshot 2023-11-16 205856.png>)
+
+
+### 39. htop Command
+
+htop command in Linux system is a command line utility that allows the user to interactively monitor the system's vital resources or server's processes in real time. htop is a newer program compared to top command, and it offers many improvements over top command.
+
+General syntax :
+
+```htop [options]```
+
+![Alt text](<Images/Screenshot 2023-11-16 210327.png>)
+
+
+
+### 40. ps Command
+
+Linux provides us a utility called ps for viewing information related with the processes on a system which stands as abbreviation for “Process Status”. ps command is used to list the currently running processes and their PIDs along with some other information depends on different options. It reads the process information from the virtual files in /proc file-system. /proc contains virtual files, this is the reason it’s referred as a virtual file system.
+
+General syntax :
+
+```ps [options]```
+
+![Alt text](<Images/Screenshot 2023-11-16 210529.png>)
 
 
 
