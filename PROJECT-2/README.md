@@ -8,7 +8,7 @@ The basic Git projects are collections of beginner-friendly tasks designed to in
 
 To create a new repo, you'll use the git init command. git init is a one-time command you use during the initial setup of a new repo. Executing this command will create a new .git subdirectory in your current working directory. This will also create a new main branch.
 
-#### Steps to initialize a git repo: 
+#### Steps to Initialize a Git Repo: 
 
 1. Open a terminal on your computer e.g git bash or vs code.
 2. On the terminal create a working folder or directory e.g ```DevOps```
@@ -22,7 +22,7 @@ To create a new repo, you'll use the git init command. git init is a one-time co
 
 Commit is more or less saving the changes made to a file. Changes can be adding, modifying or deleting a file or text. When you make a commit, git takes a snapshot of your current repository and saves a copy in the .git folder inside your working directory.
 
-#### Steps to make a first commit:
+#### Steps to Make a First Commit:
 
 1. Inside your working directory create a file index.txt using this command ```touch index.txt```
 2. Write any sentence of your choice inside the text file. Afterwards save the changes.
@@ -34,14 +34,14 @@ Commit is more or less saving the changes made to a file. Changes can be adding,
 
 ## Working With Branches
 
-### How Branches work
+### How Branches Work
 
 A key feature of Git is branching. Think of the trunk of a tree as your main project. We create branches to separate our work for each task. It helps us isolate and work on one part of the project without directly impacting the main project until we are ready to merge it back in.
 Git branch helps you create a different copy of your source code. In your new branch, you can make changes as you please. Your change is independent of what is available in the main copy.
 
 Git branch is also an important tool for collaboration with remote teams. They can make separate branches while working on the same feature and then converge their code to one branch when they are all done.
 
-### Make your first git branch
+### Make Your First Git Branch
 
 Syntax
 
@@ -54,7 +54,7 @@ To make a new branch called riverdale, run the command:
 ![Alt text](<images/creating new branch.png>)
 
 
-### Listing your git branches
+### Listing Your Git Branches
 
 To list the branches on your local git repositories, run
 
@@ -63,7 +63,7 @@ To list the branches on your local git repositories, run
 ![Alt text](<images/list branches.png>)
 
 
-### Change into an old branch
+### Change into an Old Branch
 
 To change into an old branch, use the command below
 
@@ -71,7 +71,7 @@ To change into an old branch, use the command below
 
 ![Alt text](<images/change branch.png>)
 
-### Merging a Branch into another Branch
+### Merging a Branch into Another Branch
 
 If we have 2 branches A and B and want to merge the contents of branch B into branch A, we first change into branch A and run the command below :
 
@@ -126,7 +126,7 @@ To create a Github account, follow the below steps:
 ![Alt text](images/features.png)
 
 
-### Creating your first repostory
+### Creating your First Repository
 
 To create your first repository, follow the steps below:
 
@@ -140,7 +140,7 @@ To create your first repository, follow the steps below:
 
 3. Click on the green button to create a repository.
 
-### Pushing your local git repository to your remote github repository
+### Pushing Your Local Git Repository to Your Remote Github Repository
 
 To add a remote repository to a local repository, use the command:
 
@@ -159,7 +159,7 @@ After commotting changes in the local repo, push to the remote repository using 
 ![Alt text](<images/push remote.png>)
 
 
-### Clone remote git repository
+### Clone Remote Git Repository
 
 The git clone command helps us to make a copy of our remote repository on our local machine. Thge syntax is shown below:
 
