@@ -113,7 +113,7 @@ Next, we can test if our Apache HTTP server can respond to requests from the int
 
 Another way to retrieve your public Ip address other than to check it in AWS console is to run the below command :
 
->curl -s http://3.129.71.66/latest/meta-data/public-ipv4
+```curl -s http://3.129.71.66/latest/meta-data/public-ipv4```
 
 Since all browsers use port 80 by default, it is not neccessary to specify the port number.
 
