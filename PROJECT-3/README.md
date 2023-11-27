@@ -99,11 +99,11 @@ Our server is now running and we can access it locally and from the internet.
 
 To access it locally in our Ubuntu shell, run 
 
-> curl http://localhowst:80
+```curl http://localhowst:80```
 
 or 
 
->curl http://3.129.71.66:80
+```curl http://3.129.71.66:80```
 
 The 2 commands above are the same. The difference is that the first one uses the DNS name while the second uses the local IP which corresponds to the DNS name, localhost.
 
