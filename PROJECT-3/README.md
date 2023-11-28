@@ -33,13 +33,13 @@ Alternatively, you can follow the step by step guide below :
 
 3. There are different ways to connect to your EC2 instance but in this tutorial, we will use Git bash. Therefore, launch git and change to the directory where the key pair is downloaded (usually the downloads folder or any folder you choose to copy the key pair to. In my case, I have my key pair copied into a folder called <font colour="red"> Devops_linux </font> ) using the below command :
 
-> cd Devops_linux
+```cd Devops_linux```
 
 ![Alt text](<images/cd devops_linux.png>)
 
 4. Connect to the instance by running:
 
-> ssh -i private-key-name.pem ubuntu@Public-IP-address
+```ssh -i private-key-name.pem ubuntu@Public-IP-address```
 
 This can also be found under "SSH client" when you click on "connect" in the launched EC2 instance.
 
@@ -67,19 +67,19 @@ Install Apache using Ubuntu's package manager '_apt_'
 
 #update a list of packages in package manager
 
->sudo apt update
+```sudo apt update```
 
 ![Alt text](<images/apt update.png>)
 
 #run apache2 package installation
 
->sudo apt install apache2
+```sudo apt install apache2```
 
 ![Alt text](<images/install apache2.png>)
 
 To verify that Apache2 is running as as service in our OS, run the following command :
 
->sudo systemctl status apache2
+```sudo systemctl status apache2```
 
 ![Alt text](<images/apache2 status.png>)
 
@@ -131,7 +131,7 @@ Now that our webserver is up and running, we need to install a Database Manageme
 
 To install Mysql-server, run the code below :
 
-> sudo apt install mysql-server
+```sudo apt install mysql-server```
 
 When prompted, confirm the installation by typing y and the press enter.
 
@@ -139,7 +139,7 @@ When prompted, confirm the installation by typing y and the press enter.
 
 When installation is completed, log in to mysql console using the command :
 
-> sudo mysql
+```sudo mysql```
 
 This will connect to the administrative database user root and you will see an output as below :
 
@@ -149,13 +149,13 @@ it’s recommended that you run a security script that comes pre-installed with 
 
 Then run the following ALTER USER command to change the root user’s authentication method to one that uses a password. The following example changes the authentication method to mysql_native_password:
 
-> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';```
 
 ![Alt text](<images/alter pass.png>)
 
 After making this change, exit the MySQL prompt:
 
-> mysql> exit
+```mysql> exit```
 
 ![Alt text](<images/sql exit.png>)
 
@@ -163,7 +163,7 @@ Following that, you can run the mysql_secure_installation script without issue.
 
 Start the interactive script by running:
 
->sudo mysql_secure_installation
+```sudo mysql_secure_installation```
 
 This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.
 
@@ -191,7 +191,7 @@ For the rest of the questions, press Y and hit the ENTER key at each prompt. Thi
 
 When you’re finished, test whether you’re able to log in to the MySQL console by typing:
 
->sudo mysql -p
+```sudo mysql -p```
 
 ![Alt text](<images/test sql.png>)
 
@@ -207,13 +207,13 @@ You have Apache installed to serve your content and MySQL installed to store and
 
 To install these 3 packages at once, run the following command:
 
-> sudo apt install php libapache2-mod-php php-mysql
+```sudo apt install php libapache2-mod-php php-mysql```
 
 ![Alt text](<images/install php.png>)
 
 Once the installation is finished, run the following command to confirm your PHP version:
 
->php -v
+```php -v```
 
 ![Alt text](<images/php version.png>)
 
@@ -236,19 +236,19 @@ Apache on Ubuntu 22.04 has one virtual host enabled by default that is configure
 
 Create the directory for your_domain as follows:
 
->sudo mkdir /var/www/projectlamp
+```sudo mkdir /var/www/projectlamp```
 
 ![Alt text](images/mkdir.png)
 
 Next, assign ownership of the directory with the $USER environment variable, which will reference your current system user:
 
-> sudo chown -R $USER:$USER /var/www/projectlamp
+```sudo chown -R $USER:$USER /var/www/projectlamp```
 
 ![Alt text](images/chown.png)
 
 Then, open a new configuration file in Apache’s sites-available directory using your preferred command-line editor. Here, we’ll use vi:
 
-> sudo vi /etc/apache2/sites-available/projectlamp.conf
+```sudo vi /etc/apache2/sites-available/projectlamp.conf```
 
 This will create a new blank file. Add in the following bare-bones configuration with your own domain name:
 
@@ -263,7 +263,7 @@ To save and close the file, simply follow the steps below:
 
 You can use ```ls``` command to show the new file in the sites-available directory.
 
->sudo ls /etc/apache2/sites-available
+```sudo ls /etc/apache2/sites-available```
 
 ![Alt text](images/etc.png)
 
@@ -271,32 +271,31 @@ With this VirtualHost configuration, we’re telling Apache to serve projectlamp
 
 Now, use a2ensite to enable the new virtual host:
 
-> sudo a2ensite projectlamp
+```sudo a2ensite projectlamp```
 
 ![Alt text](images/projectlamp.png)
 
 You might want to disable the default website that comes installed with Apache. This is required if you’re not using a custom domain name, because in this case Apache’s default configuration would override your virtual host. To disable Apache’s default website, type:
 
-> sudo a2dissite 000-default
+```sudo a2dissite 000-default```
 
 ![Alt text](images/default.png)
 
 To make sure your configuration file doesn’t contain syntax errors, run the following command:
 
-> sudo apache2ctl configtest
+```sudo apache2ctl configtest```
 
 ![Alt text](images/syntax.png)
 
 Finally, reload Apache so these changes take effect:
 
-> sudo systemctl reload apache2
+```sudo systemctl reload apache2```
 
 ![Alt text](images/reload.png)
 
 Your new website is now active, but the web root /var/www/projectlamp is still empty. Create an index.html file in that location to test that the virtual host works as expected:
 
->sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 
-3.129.71.66 $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html
+```sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 3.129.71.66 $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html```
 
 Now go to your browser and access your server’s domain name or IP address:
 
@@ -319,13 +318,13 @@ With the default DirectoryIndex settings on Apache, a file named index.html will
 
 In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and modify the order in which the index.php file is listed within the DirectoryIndex directive:
 
->sudo vim /etc/apache2/mods-enabled/dir.conf
+```sudo vim /etc/apache2/mods-enabled/dir.conf```
 
 ![Alt text](images/vim.png)
 
 After saving and closing the file, you’ll need to reload Apache so the changes take effect:
 
->sudo systemctl reload apache2
+```sudo systemctl reload apache2```
 
 ![Alt text](<images/reload apache.png>)
 
@@ -335,15 +334,13 @@ Now that you have a custom location to host your website’s files and folders, 
 
 Create a new file named info.php inside your custom web root folder:
 
->vim /var/www/projectlamp/index.php
+```vim /var/www/projectlamp/index.php```
 
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 
 ```
-{
     <?php
     phpinfo();
-}
 ```
 ![Alt text](<images/php script.png>)
 
@@ -361,6 +358,6 @@ If you see this page in your browser, then your PHP installation is working as e
 
 After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. Use ```rm``` to do so.
 
->sudo rm /var/www/projectlamp/index.php
+```sudo rm /var/www/projectlamp/index.php```
 
 ![Alt text](<images/rm php.png>)
