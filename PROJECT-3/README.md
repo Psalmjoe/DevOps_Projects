@@ -237,3 +237,129 @@ Apache on Ubuntu 22.04 has one virtual host enabled by default that is configure
 Create the directory for your_domain as follows:
 
 >sudo mkdir /var/www/projectlamp
+
+![Alt text](images/mkdir.png)
+
+Next, assign ownership of the directory with the $USER environment variable, which will reference your current system user:
+
+> sudo chown -R $USER:$USER /var/www/projectlamp
+
+![Alt text](images/chown.png)
+
+Then, open a new configuration file in Apache’s sites-available directory using your preferred command-line editor. Here, we’ll use vi:
+
+> sudo vi /etc/apache2/sites-available/projectlamp.conf
+
+This will create a new blank file. Add in the following bare-bones configuration with your own domain name:
+
+![Alt text](images/virtualhost.png)
+
+To save and close the file, simply follow the steps below:
+
+1. Hit the ```esc``` button on the keyboard
+2. Type ```:```
+3. Type ```wq``` w for write and q for quit
+4. Hit ```enter``` to save the file
+
+You can use ```ls``` command to show the new file in the sites-available directory.
+
+>sudo ls /etc/apache2/sites-available
+
+![Alt text](images/etc.png)
+
+With this VirtualHost configuration, we’re telling Apache to serve projectlamp using /var/www/projectlamp as the web root directory. If you’d like to test Apache without a domain name, you can remove or comment out the options ServerName and ServerAlias by adding a pound sign (#) the beginning of each option’s lines.
+
+Now, use a2ensite to enable the new virtual host:
+
+> sudo a2ensite projectlamp
+
+![Alt text](images/projectlamp.png)
+
+You might want to disable the default website that comes installed with Apache. This is required if you’re not using a custom domain name, because in this case Apache’s default configuration would override your virtual host. To disable Apache’s default website, type:
+
+> sudo a2dissite 000-default
+
+![Alt text](images/default.png)
+
+To make sure your configuration file doesn’t contain syntax errors, run the following command:
+
+> sudo apache2ctl configtest
+
+![Alt text](images/syntax.png)
+
+Finally, reload Apache so these changes take effect:
+
+> sudo systemctl reload apache2
+
+![Alt text](images/reload.png)
+
+Your new website is now active, but the web root /var/www/projectlamp is still empty. Create an index.html file in that location to test that the virtual host works as expected:
+
+>sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 
+3.129.71.66 $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html
+
+Now go to your browser and access your server’s domain name or IP address:
+
+```http://<Public-IP-Address>:80```
+
+![Alt text](images/Browser.png)
+
+You can also access your your website in your browser by by public DNS name and not only by IP:
+
+```http://<Public-DNS-Name>:80```
+
+You can leave this file in place as a temporary landing page for your application until you set up an index.php file to replace it. Once you do that, remember to remove or rename the index.html file from your document root, as it would take precedence over an index.php file by default.
+
+
+## Enable PHP on the Website
+
+### Step 5: PHP on Website
+
+With the default DirectoryIndex settings on Apache, a file named index.html will always take precedence over an index.php file. This is useful for setting up maintenance pages in PHP applications, by creating a temporary index.html file containing an informative message to visitors. Because this page will take precedence over the index.php page, it will then become the landing page for the application. Once maintenance is over, the index.html is renamed or removed from the document root, bringing back the regular application page.
+
+In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and modify the order in which the index.php file is listed within the DirectoryIndex directive:
+
+>sudo vim /etc/apache2/mods-enabled/dir.conf
+
+![Alt text](images/vim.png)
+
+After saving and closing the file, you’ll need to reload Apache so the changes take effect:
+
+>sudo systemctl reload apache2
+
+![Alt text](<images/reload apache.png>)
+
+In the next step, we’ll create a PHP script to test that PHP is correctly installed and configured on your server.
+
+Now that you have a custom location to host your website’s files and folders, create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
+
+Create a new file named info.php inside your custom web root folder:
+
+>vim /var/www/projectlamp/index.php
+
+This will open a blank file. Add the following text, which is valid PHP code, inside the file:
+
+```
+{
+    <?php
+    phpinfo();
+}
+```
+![Alt text](<images/php script.png>)
+
+When you are finished, save and close the file.
+
+To test this script, go to your web browser and access your server’s domain name or IP address, followed by the script name, which in this case is index.php:
+
+```http://server_domain_or_IP/index.php```
+
+![Alt text](images/php.png)
+
+This page provides information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
+
+If you see this page in your browser, then your PHP installation is working as expected.
+
+After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. Use ```rm``` to do so.
+
+>sudo rm /var/www/projectlamp/index.php
+
