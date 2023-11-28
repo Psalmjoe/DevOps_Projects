@@ -363,3 +363,4 @@ After checking the relevant information about your PHP server through that page,
 
 >sudo rm /var/www/projectlamp/index.php
 
+![Alt text](<images/rm php.png>)
