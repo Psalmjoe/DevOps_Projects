@@ -425,3 +425,50 @@ You’ll see the following output :
 
 ![Alt text](<images/show db.png>)
 
+After confirming that you have valid data in your test table, you can exit the MySQL console :
+
+```mysql> exit```
+
+Now you can create the PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use nano for that :
+
+```nano /var/www/projectLEMP/todo_list.php```
+
+The following PHP script connects to the MySQL database and queries for the content of the todo_list table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception. Copy this content into your todo_list.php script :
+
+```
+<?php
+$user = "example_user";
+$password = "PassWord.1";
+$database = "example_database";
+$table = "todo_list";
+
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>";
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+```
+
+Save and close the file when you’re done editing.
+
+![Alt text](<images/php script.png>)
+
+You can now access this page in your web browser by visiting the domain name or public IP address configured for your website, followed by /todo_list.php :
+
+```http://<Public_domain_or_IP>/todo_list.php```
+
+You should see a page like this, showing the content you’ve inserted in your test table :
+
+![Alt text](images/to-do.png)
+
+That means your PHP environment is ready to connect and interact with your MySQL server.
+
+### Conclusion
+
+In this guide, we’ve built a flexible foundation for serving PHP websites and applications to your visitors, using Nginx as web server and MySQL as database system.
