@@ -41,7 +41,7 @@ To verify that Nginx was successfully installed and is running as a service in U
 
 If it is green and running as above then you did everything correctly and have just lauched your webserver in he cloud.
 
-Before we can receive any traffic by our webserver, we need to open TCP port 80 which is the default port that web browsers use to access web pages on the internet. Up until now only the SSH port 22 is open by default during our instance launch.
+Before we can receive any traffic by our webserver, we need to open *TCP port 80* which is the default port that web browsers use to access web pages on the internet. Up until now only the SSH port 22 is open by default during our instance launch.
 
 Port 80 can be opened by modifying the security group of the running EC2 instance.
 
@@ -84,13 +84,13 @@ The above is the same result we got using the curl command but now represented i
 ## Installing Mysql
 ### Step 2 - Installing Mysql
 
-Now that our webserver is up and running, we need to install a Database Management System (DBMS) to be able to store and manage data for our site. For this purpose, we will use Mysql, a relational database managemet system used within PHP environments.
+Now that our webserver is up and running, we need to install a **Database Management System (DBMS)** to be able to store and manage data for our site. For this purpose, we will use Mysql, a relational database managemet system used within PHP environments.
 
 To install Mysql-server, run the code below :
 
 ```sudo apt install mysql-server```
 
-When prompted, confirm the installation by typing y and the press enter.
+When prompted, confirm the installation by typing ```Y``` and the press ```ENTER```.
 
 ![Alt text](<images/msql install.png>)
 
@@ -98,13 +98,13 @@ When installation is completed, log in to mysql console using the command :
 
 ```sudo mysql```
 
-This will connect to the administrative database user root and you will see an output as below :
+This will connect to the administrative database user **root** and you will see an output as below :
 
 ![Alt text](<images/sudo mysql.png>)
 
 It is recommended that you run a security script that comes pre-installed with MySQL. This script will remove some insecure default settings and lock down access to your database system.
 
-Before running the script, you will set a password for the root user using mysql_native_password as default authentication method. We are defining this user's password as PassWord.1
+Before running the script, you will set a password for the **root** user using mysql_native_password as default authentication method. We are defining this user's password as ```PassWord.1```
 
 ```ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';```
 
@@ -122,27 +122,29 @@ Start the interactive script by running:
 
 ```sudo mysql_secure_installation```
 
-This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.
+This will ask if you want to configure the ```VALIDATE PASSWORD PLUGIN```.
 
 Note: Enabling this feature is something of a judgment call. If enabled, passwords which don’t match the specified criteria will be rejected by MySQL with an error. It is safe to leave validation disabled, but you should always use strong, unique passwords for database credentials.
 
-Answer Y for yes, or anything else to continue without enabling.
+Answer ```Y``` for yes, or anything else to continue without enabling.
 
+```
 VALIDATE PASSWORD PLUGIN can be used to test passwords and improve security. It checks the strength of password and allows the users to set only those passwords which are secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+```
 
-Press y|Y for Yes, any other key for No:
+```Press y|Y for Yes, any other key for No:```
 
-If you answer “yes”, you’ll be asked to select a level of password validation. Keep in mind that if you enter 2 for the strongest level, you will receive errors when attempting to set any password which does not contain numbers, upper and lowercase letters, and special characters:
+If you answer “yes”, you’ll be asked to select a level of password validation. Keep in mind that if you enter ```2``` for the strongest level, you will receive errors when attempting to set any password which does not contain numbers, upper and lowercase letters, and special characters:
 
 ![Alt text](<images/edit pass.png>)
 
-Regardless of whether you chose to set up the VALIDATE PASSWORD PLUGIN, your server will next ask you to select and confirm a password for the MySQL root user. This is not to be confused with the system root. The database root user is an administrative user with full privileges over the database system. Even though the default authentication method for the MySQL root user doesn’t involve using a password, even when one is set, you should define a strong password here as an additional safety measure.
+Regardless of whether you chose to set up the ```VALIDATE PASSWORD PLUGIN```, your server will next ask you to select and confirm a password for the MySQL **root** user. This is not to be confused with the **system root**. The **database root** user is an administrative user with full privileges over the database system. Even though the default authentication method for the MySQL root user doesn’t involve using a password, **even when one is set**, you should define a strong password here as an additional safety measure.
 
-If you enabled password validation, you’ll be shown the password strength for the root password you just entered and your server will ask if you want to continue with that password. If you are happy with your current password, enter Y for “yes” at the prompt:
+If you enabled password validation, you’ll be shown the password strength for the root password you just entered and your server will ask if you want to continue with that password. If you are happy with your current password, enter ```Y``` for “yes” at the prompt:
 
 ![Alt text](<images/new pass.png>)
 
-For the rest of the questions, press Y and hit the ENTER key at each prompt. This will remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately respects the changes you have made.
+For the rest of the questions, press ```Y``` and hit the ```ENTER``` key at each prompt. This will remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately respects the changes you have made.
 
 ![Alt text](<images/mysql setup.png>)
 
@@ -150,7 +152,7 @@ When you’re finished, test whether you’re able to log in to the MySQL consol
 
 ```sudo mysql -p```
 
-Notice the -p flag in this command which will prompt you for the command used after chaning the root user password.
+Notice the ```-p``` flag in this command which will prompt you for the command used after chaning the root user password.
 
 To exit the Mysql console, type :
 
@@ -160,22 +162,22 @@ To exit the Mysql console, type :
 
 For increased security, it’s best to have dedicated user accounts with less expansive privileges set up for every database, especially if you plan on having multiple databases hosted on your server.
 
-Note: At the time of this writing, the native MySQL PHP library mysqlnd doesn’t support caching_sha2_authentication, the default authentication method for MySQL 8. For that reason, when creating database users for PHP applications on MySQL 8, you’ll need to make sure they’re configured to use mysql_native_password instead. We’ll demonstrate how to do that in Step 6.
+>Note: At the time of this writing, the native MySQL PHP library mysqlnd doesn’t support caching_sha2_authentication, the default authentication method for MySQL 8. For that reason, when creating database users for PHP applications on MySQL 8, you’ll need to make sure they’re configured to use mysql_native_password instead. We’ll demonstrate how to do that in Step 6.
 
 Your MySQL server is now installed and secured. Next, you’ll install PHP, the final component in the LEMP stack.
 
 ## Installing PHP
 ### Step 3 - Installing PHP
 
-You have Nginx installed to serve your content and MySQL installed to store and manage your data. Now you can install PHP to process code and generate dynamic content for the web server.
+You have Nginx installed to serve your content and MySQL installed to store and manage your data. Now you can install **PHP** to process code and generate dynamic content for the web server.
 
-While Apache embeds the PHP interpreter in each request, Nginx requires an external program to handle PHP processing and act as a bridge between the PHP interpreter itself and the web server. This allows for a better overall performance in most PHP-based websites, but it requires additional configuration. You’ll need to install php-fpm, which stands for “PHP fastCGI process manager”, and tell Nginx to pass PHP requests to this software for processing. Additionally, you’ll need php-mysql, a PHP module that allows PHP to communicate with MySQL-based databases. Core PHP packages will automatically be installed as dependencies.
+While Apache embeds the PHP interpreter in each request, Nginx requires an external program to handle PHP processing and act as a bridge between the PHP interpreter itself and the web server. This allows for a better overall performance in most PHP-based websites, but it requires additional configuration. You’ll need to install ```php-fpm```, which stands for “PHP fastCGI process manager”, and tell Nginx to pass PHP requests to this software for processing. Additionally, you’ll need ```php-mysql```, a PHP module that allows PHP to communicate with MySQL-based databases. Core PHP packages will automatically be installed as dependencies.
 
 To install the php-fpm and php-mysql packages, run :
 
 ```sudo apt install php-fpm php-mysql```
 
-When prompted, type Y and ENTER to confirm installation.
+When prompted, type ```Y``` and ```ENTER``` to confirm installation.
 
 ![Alt text](<images/php install.png>)
 
@@ -185,11 +187,11 @@ You now have your PHP components installed. Next, you’ll configure Nginx to us
 
 ### Step 4 — Configuring Nginx to Use the PHP Processor
 
-When using the Nginx web server, we can create server blocks (similar to virtual hosts in Apache) to encapsulate configuration details and host more than one domain on a single server. In this guide, we’ll use projectLEMP as an example domain name.
+When using the Nginx web server, we can create server blocks (similar to virtual hosts in Apache) to encapsulate configuration details and host more than one domain on a single server. In this guide, we’ll use **projectLEMP** as an example domain name.
 
-On Ubuntu 20.04, Nginx has one server block enabled by default and is configured to serve documents out of a directory at /var/www/html. While this works well for a single site, it can become difficult to manage if you are hosting multiple sites. Instead of modifying /var/www/html, we’ll create a directory structure within /var/www for the your_domain website, leaving /var/www/html in place as the default directory to be served if a client request doesn’t match any other sites.
+On Ubuntu 20.04, Nginx has one server block enabled by default and is configured to serve documents out of a directory at ```/var/www/html```. While this works well for a single site, it can become difficult to manage if you are hosting multiple sites. Instead of modifying ```/var/www/html```, we’ll create a directory structure within ```/var/www``` for the your_domain website, leaving ```/var/www/html``` in place as the default directory to be served if a client request doesn’t match any other sites.
 
-Create the root web directory for your_domain as follows:
+Create the root web directory for ```projectLEMP``` as follows:
 
 ```sudo mkdir /var/www/projectLEMP```
 
@@ -201,7 +203,7 @@ Next, assign ownership of the directory with the $USER environment variable, whi
 
 ![Alt text](images/chown.png)
 
-Then, open a new configuration file in Nginx’s sites-available directory using your preferred command-line editor. Here, we’ll use nano :
+Then, open a new configuration file in Nginx’s ```sites-available``` directory using your preferred command-line editor. Here, we’ll use ```nano``` :
 
 ```sudo nano /etc/nginx/sites-available/projectLEMP```
 
@@ -308,20 +310,20 @@ Now go to your browser and and try to open yur website url using your IP address
 
 ![Alt text](<images/hello world.png>)
 
-If you see the text from echo command you wrote to index.html file, then it means that your Nginx is working as expected. In the output, you will see your server's public hostname (DNS name) and the public IP address. You can also access your website in your browser by public DNS name with the below format and not only through your public IP address.
+If you see the text from _**'echo'**_ command you wrote to index.html file, then it means that your Nginx is working as expected. In the output, you will see your server's public hostname (DNS name) and the public IP address. You can also access your website in your browser by public DNS name with the below format and not only through your public IP address.
 
 ```http://<Public-DNS-Name>:80```
 
-You can leave this file in place as a temporary landing page for your application until you set up an index.php file to replace it. Once you do that, remember to remove or rename the index.html file from your document root, as it would take precedence over an index.php file by default.
+You can leave this file in place as a temporary landing page for your application until you set up an ```index.php``` file to replace it. Once you do that, remember to remove or rename the ```index.html``` file from your document root, as it would take precedence over an ```index.php``` file by default.
 
 Your LEMP stack is now fully configured. In the next step, we’ll create a PHP script to test that Nginx is in fact able to handle ```.php``` files within your newly configured website.
 
 ## Testing PHP with Nginx
 ### Step 5 –Testing PHP with Nginx
 
-Your LEMP stack should now be completely set up. You can test it to validate that Nginx can correctly hand .php files off to your PHP processor.
+Your LEMP stack should now be completely set up. You can test it to validate that Nginx can correctly hand ```.php``` files off to your PHP processor.
 
-You can do this by creating a test PHP file in your document root. Open a new file called info.php within your document root in your text editor:
+You can do this by creating a test PHP file in your document root. Open a new file called ```info.php``` within your document root in your text editor:
 
 ```nano /var/www/projectLEMP/info.php```
 
@@ -331,7 +333,7 @@ Type or paste the following lines into the new file. This is valid PHP code that
 <?php
 phpinfo();
 ```
-When you are finished, save and close the file by typing CTRL+X and then y and ENTER to confirm.
+When you are finished, save and close the file by typing ```CTRL+X``` and then ```y```and ```ENTER``` to confirm.
 
 ![Alt text](<images/php info.png>)
 
@@ -343,7 +345,7 @@ You will see a web page containing detailed information about your server :
 
 ![Alt text](<images/php home.png>)
 
-After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. You can use rm to remove that file :
+After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. You can use ```rm``` to remove that file :
 
 ```sudo rm /var/www/your_domain/info.php```
 
@@ -397,7 +399,7 @@ You can test if the new user has the proper permissions by logging in to the MyS
 
 ![Alt text](<images/test user.png>)
 
-Notice the -p flag in this command, which will prompt you for the password used when creating the example_user user. After logging in to the MySQL console, confirm that you have access to the example_database database :
+Notice the ```-p``` flag in this command, which will prompt you for the password used when creating the ```example_user``` user. After logging in to the MySQL console, confirm that you have access to the ```example_database``` database :
 
 ```mysql> SHOW DATABASES;```
 
@@ -411,7 +413,7 @@ Next, we’ll create a test table named todo_list. From the MySQL console, run t
 
 ![Alt text](<images/mysql to-do.png>)
 
-Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different values :
+Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different VALUES :
 
 ```mysql> INSERT INTO example_database.todo_list (content) VALUES ("My first important item");```
 
@@ -433,7 +435,7 @@ Now you can create the PHP script that will connect to MySQL and query for your 
 
 ```nano /var/www/projectLEMP/todo_list.php```
 
-The following PHP script connects to the MySQL database and queries for the content of the todo_list table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception. Copy this content into your todo_list.php script :
+The following PHP script connects to the MySQL database and queries for the content of the **todo_list** table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception. Copy this content into your ```todo_list.php``` script :
 
 ```
 <?php
