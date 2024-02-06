@@ -61,3 +61,104 @@ done
 ```
 
 ![Alt text](images/loop.png)
+
+3. **Command substitution** : Command substitution allows you to capture the output of a command and use it as a value within your script. You can use the backtick or the syntax ```$()``` for it.
+
+**Example** : Using backtick for command substitution
+
+```current_date=`date +%Y-%m-%d` ```
+
+**Example** : Using ```$()``` syntax for command substitution
+
+```current_date=$(date +%Y-%m-%d) ```
+
+4. **Input and Output** : Bash provides various ways to handle inputs and outputs. You can use the read command to accept user input, and output text to the console using the echo command. Additionally, you can redirect input and output using operators like > (output to a file), < (input from a file), and | (pipe the output of one command as input to the other).
+
+Example : Accept user input
+
+```
+echo "Enter your name:"
+read name
+
+```
+
+**Example** : Output text to the terminal
+
+``` echo "Hello World" ```
+
+**Example**: Output the result of a command into a file
+
+``` echo "Hello World"  > index.txt```
+
+**Example** : Pass the content of a file as input to a command
+
+```grep "pattern" < input.txt```
+
+**Example** : Pass the result of a command as input to another command
+
+```echo "hello world" | grep "pattern"```
+
+5. **Functions** : Bash allows you to define and use functions to group related commands together. Functions provide a way to modularize your code and make it more reusable. You can define function by using the function keyword or simply by declaring the function name followed by parentheses.
+
+```
+#!/bin/bash
+
+# Define a function to greet the user
+greet() {
+    echo "Hello, $1! Nice to meet you."
+}
+
+# Call the greet function and pass the name as an argument
+greet "John"
+
+```
+![Alt text](images/hello.png)
+
+
+## Let's write our first shell script
+
+**Step 1** : On your terminal, open a terminal called shell scripting using the command ```mkdir shell-scripting```. This will hold all the scripts that we will write in this project.
+
+![Alt text](images/mkdir.png)
+
+**Step 2** : Create a file called user-input.sh using the command ```touch user-input.sh```
+
+![Alt text](images/touch.png)
+
+Step 3 : Inside the file, copy and paste the block of code below:
+
+```
+#!/bin/bash
+
+# Prompt the user for their name
+echo "Enter your name:"
+read name
+
+# Display a greeting with the entered name
+echo "Hello, $name! Nice to meet you."
+
+```
+![Alt text](<images/user script.png>)
+
+The above script prompts for your name. After typing your name, it dispalys the text hello! Nice to meet you. Also #!/bin/bash specifies the type of interpreter to be used to execute the script.
+
+**Step 4** : Save your file
+
+![Alt text](<images/save file.png>)
+
+**Step 5** : Run the command using ```sudo chmod +x user-input.sh```
+
+![Alt text](<images/chmod user.png>)
+
+**Step 6** : Run the script using the command ```./user-input.sh```
+
+![Alt text](<images/user run script.png>)
+
+
+## Directory Manipulation and Navigation
+
+We will write a simple script that will display the current directory, create a new directory called "my_directory", change to that directory, create two files inside it, list the files, move back one level up, remove the "my_directory" and its contents and finally list the files in the current directory again.
+
+Follow the steps below to do that :
+
+**Step 1** : Open a file named *navigating-linux-filesystem.sh*
