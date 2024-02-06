@@ -12,7 +12,7 @@ Shell scripts are mostly used to avoid repetitive work. You can write a script t
 
 Example: Assigning value to a variable:
 
-```name=""Psalm```
+```name="Psalm"```
 
 ![Alt text](images/variable.png)
 
@@ -162,3 +162,232 @@ We will write a simple script that will display the current directory, create a 
 Follow the steps below to do that :
 
 **Step 1** : Open a file named *navigating-linux-filesystem.sh*
+
+![Alt text](images/navi.png)
+
+**Step 2**: Paste the code block below into the file
+
+```
+#!/bin/bash
+
+# Display current directory
+echo "Current directory: $PWD"
+
+# Create a new directory
+echo "Creating a new directory..."
+mkdir my_directory
+echo "New directory created."
+
+# Change to the new directory
+echo "Changing to the new directory..."
+cd my_directory
+echo "Current directory: $PWD"
+
+# Create some files
+echo "Creating files..."
+touch file1.txt
+touch file2.txt
+echo "Files created."
+
+# List the files in the current directory
+echo "Files in the current directory:"
+ls
+
+# Move one level up
+echo "Moving one level up..."
+cd ..
+echo "Current directory: $PWD"
+
+# Remove the new directory and its contents
+echo "Removing the new directory..."
+rm -rf my_directory
+echo "Directory removed."
+
+# List the files in the current directory again
+echo "Files in the current directory:"
+ls
+```
+
+![Alt text](<images/navi script.png>)
+
+**Step 3** : Run the command below to set execute permission on the file :
+
+```sudo chmod +x navigating-linux-filesystem.sh```
+
+![Alt text](<images/navi chmod.png>)
+
+**Step 4** : Run the script using the command :
+
+```./navigating-linux-filesystem.sh```
+
+![Alt text](<images/run navi.png>)
+
+
+## File Operations and Sorting
+
+We will be writing a simple shell script that that focuses on file operations and sorting.
+
+This script creates three files (file1.txt, file2.txt, and file3.txt), displays the files in their current order, sorts them alphabetically, saves the sorted files in sorted_files.txt, displays the sorted files, removes the original files, renames the sorted file to sorted_files_sorted_alphabetically.txt, and finally dispalys the contents of the final sorted files.
+
+To do this, let's follow the below steps :
+
+**Step 1** : Open a terminal and create a file called sorting.sh using the command ```touch sorting.sh```
+
+![Alt text](<images/touch sorting.png>)
+
+**Step** 2 : Copy and paste the code block below into the file.
+
+```
+#!/bin/bash
+
+# Create three files
+echo "Creating files..."
+echo "This is file3." > file3.txt
+echo "This is file1." > file1.txt
+echo "This is file2." > file2.txt
+echo "Files created."
+
+# Display the files in their current order
+echo "Files in their current order:"
+ls
+
+# Sort the files alphabetically
+echo "Sorting files alphabetically..."
+ls | sort > sorted_files.txt
+echo "Files sorted."
+
+# Display the sorted files
+echo "Sorted files:"
+cat sorted_files.txt
+
+# Remove the original files
+echo "Removing original files..."
+rm file1.txt file2.txt file3.txt
+echo "Original files removed."
+
+# Rename the sorted file to a more descriptive name
+echo "Renaming sorted file..."
+mv sorted_files.txt sorted_files_sorted_alphabetically.txt
+echo "File renamed."
+
+# Display the final sorted file
+echo "Final sorted file:"
+cat sorted_files_sorted_alphabetically.txt
+
+```
+
+![Alt text](<images/sorting script.png>)
+
+**Step 3** : Set execute permission on ```sorting.sh``` using the command ```sudo chmod +x sorting.sh```
+
+![Alt text](<images/sorting chmod.png>)
+
+Step 4 : Run your script using the command ```./sorting.sh```
+
+![Alt text](<images/run sorting.png>)
+
+
+## Working with Numbers and Calculations
+
+This script defines two variables num1 and num2 with numeric values, performs basic arithmetic operations (addition, subtraction, multiplication, division, and modulus), and displays the results. It also performs more complex calculations such as raising num1 to the power of 2 and calculating the square root of num2, and dispalys those results as well.
+
+Let's proceed by following the steps below :
+
+**Step 1** : On your terminal, create a file named calculations.sh using the command ```touch calculations .sh```
+
+![Alt text](images/calculation.sh.png)
+
+**Step 2**: Copy and paste the code block into the file:
+
+```
+#!/bin/bash
+
+# Define two variables with numeric values
+num1=10
+num2=5
+
+# Perform basic arithmetic operations
+sum=$((num1 + num2))
+difference=$((num1 - num2))
+product=$((num1 * num2))
+quotient=$((num1 / num2))
+remainder=$((num1 % num2))
+
+# Display the results
+echo "Number 1: $num1"
+echo "Number 2: $num2"
+echo "Sum: $sum"
+echo "Difference: $difference"
+echo "Product: $product"
+echo "Quotient: $quotient"
+echo "Remainder: $remainder"
+
+# Perform some more complex calculations
+power_of_2=$((num1 ** 2))
+square_root=$(echo "sqrt($num2)" | bc)
+
+# Display the results
+echo "Number 1 raised to the power of 2: $power_of_2"
+echo "Square root of number 2: $square_root"
+
+```
+
+![Alt text](<images/calc script.png>)
+
+**Step 3** : Set execute permission on ```calculations.sh``` using the command ```sudo chmod +x calculations.sh```
+
+![Alt text](<images/calc chmod.png>)
+
+Step 4 : Run your script using this command : ```./calculations.sh```
+
+![Alt text](<images/calc run.png>)
+
+
+## File Backup and Timestamping
+
+### File Backup and Timestamping
+
+Backing up databases and other storage devices is one of the most common tasks of a DevOps engineer.
+
+This script defines the source directory and backup directory paths. It then creates a timestamp using the current data and time, and creates a backup directory with the timestamp appended to its name. The script then copies all files from the source directory to the backup directory using the cp command with the -r option for recursive copying. Finally, it displays a message indicating the completion of the backup process and shows the path of the backup directory with the timestamp.
+
+Let's prcceed with the steps below :
+
+**Step 1** : On the terminal, open a file *backup.sh* using the command ``` touch backup.sh```
+
+**Step 2** : Copy and paste the code block below into the file :
+
+```
+#!/bin/bash
+
+# Define the source directory and backup directory
+source_dir="/path/to/source_directory"
+backup_dir="/path/to/backup_directory"
+
+# Create a timestamp with the current date and time
+timestamp=$(date +"%Y%m%d%H%M%S")
+
+# Create a backup directory with the timestamp
+backup_dir_with_timestamp="$backup_dir/backup_$timestamp"
+
+# Create the backup directory
+mkdir -p "$backup_dir_with_timestamp"
+
+# Copy all files from the source directory to the backup directory
+cp -r "$source_dir"/* "$backup_dir_with_timestamp"
+
+# Display a message indicating the backup process is complete
+echo "Backup completed. Files copied to: $backup_dir_with_timestamp"
+
+```
+
+![Alt text](<images/backup script.png>)
+
+**Step 3** : Set execute permission on backup.sh using the command ```sudo chmod +x backup.sh```
+
+![Alt text](<images/backup chmod.png>)
+
+
+**Step 4** : Run your script using this command : ```./backup.sh```
+
+![Alt text](<images/backup run.png>)
